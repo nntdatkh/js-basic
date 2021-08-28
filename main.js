@@ -40,6 +40,7 @@ canvas.addEventListener('keydown', (e) => {
     default:
       break;
   } 
+  e.defaultPrevented();
   moveAndDraw();
 })
 
