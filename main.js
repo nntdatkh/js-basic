@@ -1,46 +1,20 @@
-// 1. COMPLETE VARIABLE AND FUNCTION DEFINITIONS
+let canvas = document.querySelector("canvas");
+let ctx = canvas.getContext("2d");
 
-const customName = document.getElementById('customname');
-const randomize = document.querySelector('.randomize');
-const story = document.querySelector('.story');
+function drawCircle(x, y, size) {
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-function randomValueFromArray(array){
-  const random = Math.floor(Math.random()*array.length);
-  return array[random];
+  ctx.beginPath();
+  ctx.fillStyle = "black";
+  ctx.arc(x, y, size, 0, 2 * Math.PI);
+  ctx.fill();
 }
 
-let storyText = 'It was 94 fahrenheit outside, so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but was not surprised — :insertx: weighs 300 pounds, and it was a hot day.';
-let insertX = ['Willy the Goblin', 'Big Daddy', 'Father Christmas'];
-let insertY = ['the soup kitchen', 'Disneyland', 'the White House'];
-let insertZ = ['spontaneously combusted', 'melted into a puddle on the sidewalk', 'turned into a slug and crawled away'];
+let x = 50;
+let y = 50;
+const size = 30;
 
-// 3. EVENT LISTENER AND PARTIAL FUNCTION DEFINITION
+drawCircle(x, y, size);
 
-randomize.addEventListener('click', result);
-
-function result() {
-  let newStory = storyText;
-  let xItem = randomValueFromArray(insertX);
-  let yItem = randomValueFromArray(insertY);
-  let zItem = randomValueFromArray(insertZ);
-
-  newStory = newStory.replaceAll(':insertx:', xItem);
-  newStory = newStory.replaceAll(':inserty:', yItem);
-  newStory = newStory.replaceAll(':insertz:', zItem);
-
-  if(customName.value !== '') {
-    let name = customName.value;
-    newStory = newStory.replace('Bob', name)
-  }
-
-  if(document.getElementById("uk").checked) {
-    let weight = Math.round(300).toString() + ' stone';
-    let temperature =  Math.round(94).toString() + ' centigrade';
-
-    newStory = newStory.replace('94 fahrenheit', temperature);
-    newStory = newStory.replace('300 pounds', weight);
-  }
-
-  story.textContent = newStory;
-  story.style.visibility = 'visible';
-}
+// Add your code here
