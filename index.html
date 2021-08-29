@@ -1,37 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
 
-    <title>Move the Circle</title>
+    <title>Image gallery</title>
 
-    <style>
-      p {
-        color: purple;
-        margin: 0.5em 0;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      canvas {
-        border: 1px solid black;
-      }
+    <link rel="stylesheet" href="style.css">
     
-    </style>
   </head>
 
   <body>
-    <section class="preview">
-    </section>
+    <h1>Image gallery example</h1>
 
-    <canvas width="480" height="320" tabindex="0">
+    <div class="full-img">
+      <img class="displayed-img" src="images/pic1.jpg">
+      <div class="overlay"></div>
+      <button class="dark">Darken</button>
+    </div>
 
-    </canvas>
+    <div class="thumb-bar">
 
+
+    </div>
     <script src="main.js" type="text/javascript" async></script>
   </body>
 </html>
