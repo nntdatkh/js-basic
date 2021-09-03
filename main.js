@@ -1,34 +1,63 @@
-const displayedImage = document.querySelector(".displayed-img");
-const thumbBar = document.querySelector(".thumb-bar");
+const section = document.querySelector('section');
 
-const btn = document.querySelector("button");
-const overlay = document.querySelector(".overlay");
+let para1 = document.createElement('p');
+let para2 = document.createElement('p');
 
-/* Looping through images */
+let motherInfo = 'The mother cats are called ';
+let kittenInfo;
 
-for (let i = 1; i <= 5; i++) {
-  let pic = `images/pic${i}.jpg`;
-  const newImage = document.createElement("img");
-  newImage.setAttribute("src", pic);
-  thumbBar.appendChild(newImage);
+fetch('sample.json')
+.then(response => response.text())
+.then(text => displayCatInfo(text))
 
-  newImage.onclick = function () {
-    displayedImage.setAttribute("src", pic);
-  };
+function setMotherInfo(arrayCat) {
+  for (let i = 0; i < arrayCat.length; i++) {
+    if (i === 0)
+      motherInfo += arrayCat[i].name;
+    else if (i === arrayCat.length - 1)
+      motherInfo += ` and ${arrayCat[i].name}.`;
+    else
+      motherInfo += `, ${arrayCat[i].name}`;
+  }
 }
 
-/* Wiring up the Darken/Lighten button */
-
-btn.onclick = function () {
-  let getAttributeButton = btn.getAttribute("class");
-
-  if (getAttributeButton === "dark") {
-    btn.setAttribute("class", "light");
-    btn.textContent = "Lighten";
-    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
-  } else {
-    btn.setAttribute("class", "dark");
-    btn.textContent = "Darken";
-    overlay.style.backgroundColor = "rgba(0,0,0,0.0)";
+function totalKittens(arrayCat) {
+  let total = 0;
+  for (let i = 0; i < arrayCat.length; i++) {
+    total += arrayCat[i].kittens.length;
   }
-};
+  return total;
+}
+
+function countMaleKitten(arrayCat) {
+  let countM = 0; // male
+  for (let i = 0; i < arrayCat.length; i++) {
+    for (let j = 0; j < arrayCat[i].kittens.length; j++) {
+      if (arrayCat[i].kittens[j].gender === 'm')
+        countM++;
+    }
+  }
+  return countM;
+}
+
+function displayCatInfo(catString) {
+  let total = 0;
+  let male = 0;
+
+  // Add your code here
+const catJson = JSON.parse(catString); 
+
+setMotherInfo(catJson);
+total = totalKittens(catJson);
+male = countMaleKitten(catJson);
+
+kittenInfo = `There are total ${total} kittens with ${male} males and ${total - male} females.`;
+
+// Don't edit the code below here!
+
+  para1.textContent = motherInfo;
+  para2.textContent = kittenInfo;
+}
+
+section.appendChild(para1);
+section.appendChild(para2);

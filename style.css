@@ -8,7 +8,7 @@ body {
   margin: 0 auto;
 }
 
-.full-img {
+/* .full-img {
   position: relative;
   display: block;
   width: 640px;
@@ -40,4 +40,4 @@ button {
   width: 20%;
   float: left;
   cursor: pointer;
-}
+} */
